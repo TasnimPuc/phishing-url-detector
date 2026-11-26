@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { font: 14px system-ui, sans-serif; width: 300px; margin: 14px; color: #202124; }
+  h1 { font-size: 16px; margin: 0 0 10px; }
+  .host { font-family: ui-monospace, monospace; word-break: break-all; color: #5f6368; }
+  .verdict { font-size: 20px; font-weight: 700; margin: 8px 0 4px; text-transform: capitalize; }
+  .safe { color: #188038; } .suspicious { color: #f29900; } .phishing { color: #d93025; }
+  .bar { height: 8px; background: #e8eaed; border-radius: 4px; overflow: hidden; }
+  .bar div { height: 100%; }
+  label, button { display: block; margin-top: 12px; }
+  button { padding: 6px 10px; cursor: pointer; }
+  small { color: #5f6368; display: block; margin-top: 12px; }
+</style>
+</head>
+<body>
+  <h1>PhishGuard URL</h1>
+  <div class="host" id="host">-</div>
+  <div class="verdict" id="verdict">-</div>
+  <div class="bar"><div id="fill"></div></div>
+  <div id="prob"></div>
+  <label><input type="checkbox" id="inter"> Block phishing pages with a warning</label>
+  <button id="trust">Trust this site</button>
+  <small id="meta"></small>
+  <script src="weights.js"></script>
+  <script src="model.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

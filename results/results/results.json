@@ -1,0 +1,161 @@
+{
+  "data": {
+    "urls_after_dedup": 231747,
+    "test_urls": 21219,
+    "test_domains": 17487
+  },
+  "shortcuts": [
+    {
+      "feature": "www_in_raw",
+      "AUROC (alone)": 0.7929119817722522,
+      "mean legit": 1.0,
+      "mean phishing": 0.41417603645549556
+    },
+    {
+      "feature": "url_length",
+      "AUROC (alone)": 0.7754022552139971,
+      "mean legit": 15.22860956618465,
+      "mean phishing": 36.730189707266334
+    },
+    {
+      "feature": "https_in_raw",
+      "AUROC (alone)": 0.756322750012383,
+      "mean legit": 1.0,
+      "mean phishing": 0.48735449997523406
+    },
+    {
+      "feature": "n_dots_host",
+      "AUROC (alone)": 0.719479943712488,
+      "mean legit": 1.16165368928439,
+      "mean phishing": 1.7547080093120015
+    },
+    {
+      "feature": "host_length",
+      "AUROC (alone)": 0.6932290744198872,
+      "mean legit": 15.228572487949574,
+      "mean phishing": 22.80489375402447
+    },
+    {
+      "feature": "has_path_or_query",
+      "AUROC (alone)": 0.6421021348258953,
+      "mean legit": 0.0,
+      "mean phishing": 0.2842042696517906
+    }
+  ],
+  "results": [
+    {
+      "model": "tfidf_lr",
+      "AUROC": 0.9289339158323805,
+      "AUROC 95% CI": "0.9254\u20130.9327",
+      "AUPRC": 0.9211041077295504,
+      "F1@0.5": 0.835833629576964,
+      "TPR@warn": 0.6987361361877741,
+      "FPR@warn": 0.009134793910137393,
+      "TPR@block": 0.5718338921846788,
+      "FPR@block": 0.0009654660230226513
+    },
+    {
+      "model": "charcnn_full",
+      "AUROC": 0.9292094656701748,
+      "AUROC 95% CI": "0.9256\u20130.9334",
+      "AUPRC": 0.9228454233421354,
+      "F1@0.5": 0.8415386823596958,
+      "TPR@warn": 0.7274954862006706,
+      "FPR@warn": 0.00824359450427033,
+      "TPR@block": 0.63335052875935,
+      "FPR@block": 0.0004455997029335314
+    },
+    {
+      "model": "charcnn_host",
+      "AUROC": 0.9046981728630701,
+      "AUROC 95% CI": "0.9000\u20130.9092",
+      "AUPRC": 0.8917111889117818,
+      "F1@0.5": 0.7684639782510195,
+      "TPR@warn": 0.5998194480268249,
+      "FPR@warn": 0.007946528035647975,
+      "TPR@block": 0.4766572091823575,
+      "FPR@block": 0.000668399554400297
+    },
+    {
+      "model": "rule_url_length",
+      "AUROC": 0.7440990699815846,
+      "AUROC 95% CI": "0.7362\u20130.7524",
+      "AUPRC": 0.7430388266356751,
+      "F1@0.5": 0.022947475777664456,
+      "TPR@warn": 0.44970337890121226,
+      "FPR@warn": 0.013813590790939472,
+      "TPR@block": 0.35594531854526695,
+      "FPR@block": 0.001336799108800594
+    },
+    {
+      "model": "rule_has_path",
+      "AUROC": 0.7074413206087181,
+      "AUROC 95% CI": "0.7022\u20130.7127",
+      "AUPRC": 0.6287004460150232,
+      "F1@0.5": 0.5864552000729195,
+      "TPR@warn": 1.0,
+      "FPR@warn": 1.0,
+      "TPR@block": 1.0,
+      "FPR@block": 1.0
+    }
+  ],
+  "stress": [
+    {
+      "model": "tfidf_lr",
+      "FPR legit (original)": 0.009134793910137393,
+      "FPR legit + path": 0.9278871147419235,
+      "TPR phishing (original)": 0.6987361361877741,
+      "TPR phishing host-only": 0.5736394119164302
+    },
+    {
+      "model": "charcnn_full",
+      "FPR legit (original)": 0.00824359450427033,
+      "FPR legit + path": 1.0,
+      "TPR phishing (original)": 0.7274954862006706,
+      "TPR phishing host-only": 0.6021408305390766
+    },
+    {
+      "model": "charcnn_host",
+      "FPR legit (original)": 0.007946528035647975,
+      "FPR legit + path": 0.007946528035647975,
+      "TPR phishing (original)": 0.5998194480268249,
+      "TPR phishing host-only": 0.5998194480268249
+    }
+  ],
+  "thresholds": {
+    "tfidf_lr": {
+      "warn": 0.6925633639317478,
+      "block": 0.9195952792713055
+    },
+    "charcnn_full": {
+      "warn": 0.7489587664604187,
+      "block": 0.9887229204177856
+    },
+    "charcnn_host": {
+      "warn": 0.790575385093689,
+      "block": 0.984417200088501
+    },
+    "rule_url_length": {
+      "warn": 0.056,
+      "block": 0.068
+    },
+    "rule_has_path": {
+      "warn": 0.0,
+      "block": 0.0
+    }
+  },
+  "extension_model": "charcnn_host",
+  "config": {
+    "project_id": "mimic-cxr-training",
+    "bucket": "mimic-cxr-training-mimic-ckpt",
+    "prefix": "phishing-url",
+    "use_gcs": true,
+    "max_len_full": 200,
+    "max_len_host": 64,
+    "epochs": 10,
+    "batch": 512,
+    "lr": 0.002,
+    "seed": 42,
+    "extension_model": "host"
+  }
+}
