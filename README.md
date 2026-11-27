@@ -1,5 +1,7 @@
 # PhishGuard URL: real-time phishing detection from the raw URL
 
+![repo health](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/TasnimPuc/bd-rooftop-solar-calculator/main/.github/health/badge.json)
+
 A character-level CNN reads **only the URL string**, with no HTML and no page features. It is small (~90k parameters, 360 KB) and runs
 **inside the browser** as a Chrome extension, so no URL is ever sent anywhere.
 
